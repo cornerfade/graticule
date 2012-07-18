@@ -56,6 +56,7 @@ module Graticule #:nodoc:
 
         with_options :deep => true, :namespace => 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0' do |map|
           map.element :street,      String, :tag => 'ThoroughfareName'
+          map.element :dep_locality,String, :tag => 'DependentLocalityName'
           map.element :locality,    String, :tag => 'LocalityName'
           map.element :region,      String, :tag => 'AdministrativeAreaName'
           map.element :postal_code, String, :tag => 'PostalCodeNumber'
@@ -92,7 +93,7 @@ module Graticule #:nodoc:
           :latitude    => result.latitude,
           :longitude   => result.longitude,
           :street      => result.street,
-          :locality    => result.locality,
+          :locality    => result.locality || result.dep_locality,
           :region      => result.region,
           :postal_code => result.postal_code,
           :country     => result.country,
